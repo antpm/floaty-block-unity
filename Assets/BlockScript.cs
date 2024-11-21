@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -7,11 +8,15 @@ public class BlockScript : MonoBehaviour
 
     public int flapSpeed;
     public Rigidbody2D birdRigidBody;
-    
+    public LogicManagerScript logic;
+    private Boolean alive = true;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManagerScript>();
+
     }
 
     // Update is called once per frame
@@ -19,7 +24,17 @@ public class BlockScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Gamepad.current.aButton.wasPressedThisFrame)
         {
-            birdRigidBody.linearVelocity = Vector2.up * flapSpeed;
+            if (alive)
+            {
+                birdRigidBody.linearVelocity = Vector2.up * flapSpeed;
+            }
+            
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        logic.gameOver();
+        alive = false;
     }
 }
