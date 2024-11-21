@@ -34,7 +34,11 @@ public class BlockScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        logic.gameOver();
-        alive = false;
+        if (collision.gameObject.tag != "Ceiling")
+        {
+            logic.gameOver();
+            alive = false;
+        }
+        
     }
 }
