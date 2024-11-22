@@ -16,6 +16,12 @@ public class LogicManagerScript : MonoBehaviour
         scoreText.text = playerScore.ToString();
     }
 
+    public void startGame()
+    {
+        SceneManager.LoadScene("GameScene");
+        Debug.Log("start game clicked");
+    }
+
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
