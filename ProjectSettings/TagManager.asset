@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Logic
   - Ceiling
+  - GameUI
   layers:
   - Default
   - TransparentFX
